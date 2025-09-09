@@ -9,20 +9,46 @@
   ],
   "scripts": {
     "dev": "echo 'Run dev scripts in packages or apps'",
-    "build": "echo 'Run build scripts in packages or apps'",
+    "start": "node apps/backend/dist/server.js",
+    "build": "tsc -p apps/backend/tsconfig.json",
     "test": "jest",
-    "lint": "eslint . --ext .js,.ts,.tsx"
+    "lint": "eslint . --ext .js,.ts,.tsx",
+    "migrate": "node scripts/migrate.js",
+    "seed": "node scripts/seed.js",
+    "generate:migration": "node scripts/generate-migration-from-zod.js",
+    "build:shared": "tsc -p packages/shared-types/tsconfig.json",
+    "migrate:messages": "node scripts/migrate-messages.js",
+    "migrate:tasks": "node scripts/migrate-tasks.js",
+    "migrate:audit": "node scripts/migrate-audit.js",
+    "migrate:summaries": "node scripts/migrate-summaries.js",
+    "migrate:workspaces": "node scripts/migrate-workspaces.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
+    "@types/multer": "^2.0.0",
+    "@types/ws": "^8.18.1",
     "cypress": "^15.1.0",
     "eslint": "^9.35.0",
     "jest": "^30.1.3",
     "prettier": "^3.6.2",
     "tailwindcss": "^4.1.13",
     "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "@types/express": "^5.0.3",
+    "bcryptjs": "^3.0.2",
+    "better-sqlite3": "^12.2.0",
+    "drizzle-orm": "^0.44.5",
+    "express": "^5.1.0",
+    "glob": "^9.3.5",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.2",
+    "next": "^15.5.2",
+    "node-fetch": "^3.3.2",
+    "ws": "^8.18.3",
+    "zod": "^4.1.5"
   }
 }

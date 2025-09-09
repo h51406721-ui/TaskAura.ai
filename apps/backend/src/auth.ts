@@ -1,9 +1,21 @@
+import winston from 'winston';
+export const logger = winston.createLogger({
+  level: 'info',
+  format: winston.format.json(),
+  transports: [
+    new winston.transports.Console(),
+  ],
+});
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { UserSchema } from '../../../packages/shared-types/src/schemas';
 import type { User } from '../../../packages/shared-types/src';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'dev_secret';
+
+const JWT_SECRET = process.env.JWT_SECRET;
+if (!JWT_SECRET) {
+  throw new Error('JWT_SECRET environment variable is required in production');
+}
 const JWT_EXPIRES_IN = '1h';
 
 export async function hashPassword(password: string) {

@@ -1,19 +1,26 @@
 import express from 'express';
 import db from './db';
 import { UserSchema } from '../../../packages/shared-types/src/schemas';
-import { hashPassword, comparePassword, generateToken } from './auth';
+import { hashPassword, comparePassword, generateToken, logger } from './auth';
 import { authGuard } from './middleware';
 import messagesRouter from './api/messages';
 import tasksRouter from './api/tasks';
 import summariesRouter from './api/summaries';
 import workspacesRouter from './api/workspaces';
+import 'dotenv/config'; 
+
+// ✅ Access JWT_SECRET immediately after dotenv is loaded
+const JWT_SECRET = process.env.JWT_SECRET;
+if (!JWT_SECRET) {
+  throw new Error('JWT_SECRET environment variable is required');
+}
 
 const app = express();
 app.use(express.json());
 
 // Health check endpoint for test and monitoring
 app.get('/api/health', (req: import('express').Request, res: import('express').Response) => {
-  console.log('HEALTH ENDPOINT HIT');
+  logger.info('HEALTH ENDPOINT HIT');
   res.status(200).json({ status: 'ok' });
 });
 // ...existing code...
@@ -24,7 +31,7 @@ app.use((req, res, next) => {
 
 // Global error handler (must be last)
 app.use((err: any, req: import('express').Request, res: import('express').Response, next: import('express').NextFunction) => {
-  console.error('GLOBAL ERROR HANDLER:', err);
+  logger.error('GLOBAL ERROR HANDLER:', err);
   res.status(500).json({ error: 'Internal server error' });
 });
 

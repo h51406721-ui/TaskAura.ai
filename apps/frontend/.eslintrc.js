@@ -1,24 +1,19 @@
 module.exports = {
   root: true,
-  parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'react'],
+  parser: "@typescript-eslint/parser",
+  plugins: ["@typescript-eslint"],
   extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:react/recommended',
-    'prettier'
+    "next/core-web-vitals",              // Next.js recommended rules
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
   ],
-  settings: {
-    react: {
-      version: 'detect',
-    },
-  },
-  env: {
+ env: {
     browser: true,
     es2021: true,
     node: true,
   },
   rules: {
-    'react/react-in-jsx-scope': 'off',
+    "@typescript-eslint/no-unused-vars": ["warn"], // TS cleanup
+    "react/react-in-jsx-scope": "off",             // Next.js doesn’t need React import
   },
 };

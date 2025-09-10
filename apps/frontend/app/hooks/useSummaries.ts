@@ -1,4 +1,6 @@
+
 import { useEffect, useState } from "react";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "";
 
 export function useSummaries(period?: string) {
   const [summaries, setSummaries] = useState<any[]>([]);
@@ -6,7 +8,7 @@ export function useSummaries(period?: string) {
 
   useEffect(() => {
     setLoading(true);
-    let url = "/api/summaries";
+    let url = `${API_URL}/api/summaries`;
     if (period) url += `?period=${period}`;
     fetch(url)
       .then(res => res.json())

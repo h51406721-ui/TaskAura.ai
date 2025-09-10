@@ -1,13 +1,49 @@
 {
   "compilerOptions": {
-  "target": "ES2020",
-  "module": "commonjs",
-  "esModuleInterop": true,
-  "resolveJsonModule": true,
-  "strict": true,
-  "skipLibCheck": true,
-  "forceConsistentCasingInFileNames": true,
-  "outDir": "dist"
+    /* Language and Environment */
+    "target": "ES2020",                          /* Set the JavaScript language version for emitted JavaScript. */
+    "lib": ["ES2020"],                           /* Specify library files to be included in the compilation. */
+    "module": "CommonJS",                        /* Specify module code generation. */
+    "moduleResolution": "node",                  /* Resolve modules like Node.js. */
+    "types": ["node", "jest"],                   /* Include type definitions for Node.js and Jest. */
+    "allowJs": false,                            /* Do not allow JavaScript files. */
+    "checkJs": false,                            /* Do not report errors in .js files. */
+    "resolveJsonModule": true,                   /* Allow importing .json files. */
+    "esModuleInterop": true,                     /* Emit __importStar and __importDefault helpers. */
+    "forceConsistentCasingInFileNames": true,    /* Ensure file name casing is consistent. */
+
+    /* Strict Type-Checking Options */
+    "strict": true,                              /* Enable all strict type-checking options. */
+    "noImplicitAny": true,                       /* Raise error on expressions and declarations with an implied any type. */
+    "strictNullChecks": true,                    /* Enable strict null checks. */
+    "strictFunctionTypes": true,                 /* Ensure function parameters are checked contravariantly. */
+    "strictBindCallApply": true,                 /* Check correct usage of bind, call, and apply. */
+    "noImplicitThis": true,                      /* Raise error on 'this' expressions with an implied any type. */
+    "alwaysStrict": true,                        /* Parse in strict mode and emit "use strict". */
+
+    /* Additional Checks */
+    "noUnusedLocals": true,                      /* Report errors on unused locals. */
+    "noUnusedParameters": true,                  /* Report errors on unused parameters. */
+    "noImplicitReturns": true,                   /* Report errors when not all code paths return a value. */
+    "noFallthroughCasesInSwitch": true,          /* Report errors for fallthrough cases in switch statements. */
+
+    /* Module and Import Options */
+    "allowSyntheticDefaultImports": true,        /* Allow 'import x from y' when a module has no default export. */
+    "isolatedModules": true,                     /* Ensure each file can be transpiled independently. */
+
+    /* Emit Options */
+    "outDir": "dist",                            /* Redirect output structure to the directory. */
+    "rootDir": "src",                            /* Specify the root directory of input files. */
+    "declaration": true,                         /* Generate .d.ts files. */
+    "declarationMap": true,                      /* Create sourcemaps for d.ts files. */
+    "sourceMap": true,                           /* Generate corresponding .map files. */
+    "removeComments": true,                      /* Remove all comments except copy-right header comments. */
+    "pretty": true,                              /* Stylize errors and messages using color and context. */
+
+    /* Interop and JS Features */
+    "downlevelIteration": true,                  /* Provide full support for iterables in ES5/ES3. */
+    "skipLibCheck": true                         /* Skip type checking of declaration files. */
   },
-  "include": ["src"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "coverage"]
 }

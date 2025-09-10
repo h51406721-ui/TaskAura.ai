@@ -23,6 +23,11 @@ app.get('/api/health', (_req: import('express').Request, res: import('express').
   logger.info('HEALTH ENDPOINT HIT');
   return res.status(200).json({ status: 'ok' });
 });
+
+// Welcome route for root
+app.get('/', (_req: import('express').Request, res: import('express').Response) => {
+  return res.status(200).json({ message: 'Welcome to TaskAura.ai backend!' });
+});
 // ...existing code...
 // Catch-all 404 handler (must be last)
 app.use((_req, res, _next) => {

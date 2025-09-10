@@ -1,13 +1,38 @@
 services:
   - type: web
-    name: backend
-    env: node
-    plan: free
-    buildCommand: npm install && npm run build
-    startCommand: npm start
-    rootDir: apps/backend
-    envVars:
-      - key: NODE_ENV
-        value: production
-      - key: JWT_SECRET
-        sync: false # Set this in the Render dashboard for security
+    services:
+      # ========================
+      # Backend (API)
+      # ========================
+      - type: web
+        name: taskaura-backend
+        rootDir: apps/backend
+        env: node
+        buildCommand: npm install && npm run build
+        startCommand: npm start
+        plan: free
+        autoDeploy: true
+        envVars:
+          - key: NODE_ENV
+            value: production
+          - key: JWT_SECRET
+            sync: false # Set this in the Render dashboard for security
+
+      # ========================
+      # Frontend (Next.js)
+      # ========================
+      - type: web
+        name: taskaura-frontend
+        rootDir: apps/frontend
+        env: node
+        buildCommand: npm install && npm run build
+        startCommand: npm run start
+        plan: free
+        autoDeploy: true
+        envVars:
+          - key: NODE_ENV
+            value: production
+          - key: PORT
+            value: 3000
+          - key: NEXT_PUBLIC_API_URL
+            sync: false # Set this to your backend Render URL in the dashboard

@@ -3,7 +3,7 @@ import openapi from '../openapi.json';
 
 const router = Router();
 
-router.get('/', (req: import('express').Request, res: import('express').Response) => {
+router.get('/', (_req: import('express').Request, res: import('express').Response) => {
   res.json(openapi);
 });
 

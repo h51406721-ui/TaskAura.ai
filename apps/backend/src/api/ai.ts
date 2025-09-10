@@ -1,5 +1,5 @@
 
-import express, { Request } from 'express';
+import express from 'express';
 import fetch from 'node-fetch';
 import { chatPrompt, taskExtractionPrompt } from '../ai/prompts';
 import multer from 'multer';
@@ -53,7 +53,7 @@ router.post('/transcribe', upload.single('file'), async (req: express.Request, r
     headers: { 'Content-Type': file.mimetype }
   });
   const text = await whisperRes.text();
-  res.json({ text });
+    return res.json({ text });
 });
 
 export default router;

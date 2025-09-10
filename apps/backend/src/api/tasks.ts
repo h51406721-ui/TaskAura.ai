@@ -8,7 +8,7 @@ import { logAudit } from '../db-audit';
 const router = express.Router();
 
 // Get all tasks
-router.get('/', (req: express.Request, res: express.Response) => {
+router.get('/', (_req: express.Request, res: express.Response) => {
   const tasks = db.prepare('SELECT * FROM tasks').all();
   res.json(tasks);
 });
@@ -21,7 +21,7 @@ router.post('/', (req: express.Request, res: express.Response) => {
   const info = db.prepare('INSERT INTO tasks (title, description, completed, userId) VALUES (?, ?, ?, ?)')
     .run(title, description, completed ?? false, userId);
   logAudit('CREATE_TASK', `Task: ${title}`, userId);
-  res.status(201).json({ id: info.lastInsertRowid });
+    return res.status(201).json({ id: info.lastInsertRowid });
 });
 
 // Update task (enforce status transitions)
@@ -38,7 +38,7 @@ router.put('/:id', (req: express.Request, res: express.Response) => {
   db.prepare('UPDATE tasks SET title = ?, description = ?, completed = ?, userId = ? WHERE id = ?')
     .run(title, description, completed, userId, id);
   logAudit('UPDATE_TASK', `Task: ${title}`, userId);
-  res.json({ success: true });
+    return res.json({ success: true });
 });
 
 // Delete task

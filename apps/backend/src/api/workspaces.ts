@@ -4,9 +4,9 @@ import db from '../db';
 const router = express.Router();
 
 // Get all workspaces
-router.get('/', (req: express.Request, res: express.Response) => {
+router.get('/', (_req: express.Request, res: express.Response) => {
   const workspaces = db.prepare('SELECT * FROM workspaces').all();
-  res.json(workspaces);
+    res.json(workspaces);
 });
 
 // Create workspace

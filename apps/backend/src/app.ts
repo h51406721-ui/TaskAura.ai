@@ -19,20 +19,20 @@ const app = express();
 app.use(express.json());
 
 // Health check endpoint for test and monitoring
-app.get('/api/health', (req: import('express').Request, res: import('express').Response) => {
+app.get('/api/health', (_req: import('express').Request, res: import('express').Response) => {
   logger.info('HEALTH ENDPOINT HIT');
-  res.status(200).json({ status: 'ok' });
+  return res.status(200).json({ status: 'ok' });
 });
 // ...existing code...
 // Catch-all 404 handler (must be last)
-app.use((req, res, next) => {
-  res.status(404).json({ error: 'Not found', path: req.originalUrl });
+app.use((_req, res, _next) => {
+  return res.status(404).json({ error: 'Not found', path: _req.originalUrl });
 });
 
 // Global error handler (must be last)
-app.use((err: any, req: import('express').Request, res: import('express').Response, next: import('express').NextFunction) => {
+app.use((err: any, _req: import('express').Request, res: import('express').Response, _next: import('express').NextFunction) => {
   logger.error('GLOBAL ERROR HANDLER:', err);
-  res.status(500).json({ error: 'Internal server error' });
+  return res.status(500).json({ error: 'Internal server error' });
 });
 
 app.use('/api/messages', messagesRouter);
@@ -48,9 +48,9 @@ app.post('/register', async (req: import('express').Request, res: import('expres
   const hashed = await hashPassword(password);
   try {
     db.prepare('INSERT INTO users (name, email, password) VALUES (?, ?, ?)').run(name, email, hashed);
-    res.status(201).json({ message: 'User registered' });
+    return res.status(201).json({ message: 'User registered' });
   } catch (e) {
-    res.status(400).json({ error: 'Email already exists' });
+    return res.status(400).json({ error: 'Email already exists' });
   }
 });
 
@@ -63,7 +63,7 @@ app.post('/login', async (req: import('express').Request, res: import('express')
   const valid = await comparePassword(password, user.password);
   if (!valid) return res.status(401).json({ error: 'Invalid credentials' });
   const token = generateToken({ id: user.id, name: user.name, email: user.email });
-  res.json({ token });
+    return res.json({ token });
 });
 
 // Example protected route

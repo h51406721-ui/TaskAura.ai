@@ -8,7 +8,7 @@ export const logger = winston.createLogger({
 });
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { UserSchema } from '../../../packages/shared-types/src/schemas';
+// import { UserSchema } from '../../../packages/shared-types/src/schemas';
 import type { User } from '../../../packages/shared-types/src';
 
 

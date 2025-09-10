@@ -26,3 +26,4 @@ exports.SummarySchema = zod_1.z.object({
     summary: zod_1.z.string(),
     createdAt: zod_1.z.string().datetime(),
 });
+//# sourceMappingURL=schemas.js.map

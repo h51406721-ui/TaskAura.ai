@@ -33,7 +33,7 @@
 
     /* Emit Options */
     "outDir": "dist",                            /* Redirect output structure to the directory. */
-    "rootDir": "src",                            /* Specify the root directory of input files. */
+  "rootDir": "../../",                            /* Specify the root directory of input files. */
     "declaration": true,                         /* Generate .d.ts files. */
     "declarationMap": true,                      /* Create sourcemaps for d.ts files. */
     "sourceMap": true,                           /* Generate corresponding .map files. */
@@ -44,6 +44,6 @@
     "downlevelIteration": true,                  /* Provide full support for iterables in ES5/ES3. */
     "skipLibCheck": true                         /* Skip type checking of declaration files. */
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "../../packages/shared-types/src/**/*"],
   "exclude": ["node_modules", "dist", "coverage"]
 }

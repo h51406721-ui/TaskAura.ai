@@ -10,10 +10,11 @@ export function authGuard(req: Request, res: Response, next: NextFunction) {
   try {
     const payload = jwt.verify(token, JWT_SECRET);
     (req as any).user = payload;
-    next();
+      return next();
   } catch (err) {
     return res.status(401).json({ error: 'Invalid or expired token' });
   }
+    return next();
 }
 
 export function roleGuard(role: string) {
@@ -22,6 +23,6 @@ export function roleGuard(role: string) {
     if (!user || user.role !== role) {
       return res.status(403).json({ error: 'Forbidden' });
     }
-    next();
+    return next();
   };
 }

@@ -1,7 +1,9 @@
+
 import app from './app';
 
+const PORT = process.env.PORT || 3000;
 if (require.main === module) {
-  app.listen(3000, () => console.log('Backend running on http://localhost:3000'));
+  app.listen(PORT, () => console.log(`Backend running on http://localhost:${PORT}`));
 }
 
 export default app;

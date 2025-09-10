@@ -12,10 +12,12 @@ import jwt from 'jsonwebtoken';
 import type { User } from '../../../packages/shared-types/src';
 
 
+
 const JWT_SECRET = process.env.JWT_SECRET;
 if (!JWT_SECRET) {
   throw new Error('JWT_SECRET environment variable is required in production');
 }
+const JWT_SECRET_TYPED: string = JWT_SECRET;
 const JWT_EXPIRES_IN = '1h';
 
 export async function hashPassword(password: string) {
@@ -27,9 +29,9 @@ export async function comparePassword(password: string, hash: string) {
 }
 
 export function generateToken(user: User) {
-  return jwt.sign({ id: user.id, email: user.email, role: (user as any).role || 'user' }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
+  return jwt.sign({ id: user.id, email: user.email, role: (user as any).role || 'user' }, JWT_SECRET_TYPED, { expiresIn: JWT_EXPIRES_IN });
 }
 
 export function verifyToken(token: string) {
-  return jwt.verify(token, JWT_SECRET);
+  return jwt.verify(token, JWT_SECRET_TYPED);
 }

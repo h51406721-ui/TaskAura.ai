@@ -2,6 +2,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+
+import Link from "next/link";
+import Image from "next/image";
 import { ThemeProvider } from "./theme";
 
 const inter = Inter({
@@ -26,6 +29,36 @@ export default function RootLayout({
       </head>
       <body className={inter.variable}>
         <ThemeProvider>
+          <nav style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            padding: '1rem 2rem',
+            background: 'rgba(255,255,255,0.95)',
+            borderBottom: '1px solid #e5e7eb',
+            position: 'sticky',
+            top: 0,
+            zIndex: 50,
+            boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
+          }}>
+            <Link href="/" style={{display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none'}} aria-label="TaskAura.ai homepage">
+              <Image src="/next.svg" alt="TaskAura.ai logo" width={36} height={36} style={{marginRight: 8}} />
+              <span style={{fontWeight: 700, fontSize: 22, color: '#222'}}>TaskAura<span style={{color: '#2563eb'}}>.ai</span></span>
+            </Link>
+            <div style={{display: 'flex', alignItems: 'center', gap: 24}}>
+              <Link href="/dashboard" style={{fontWeight: 500, color: '#2563eb', textDecoration: 'none'}}>Dashboard</Link>
+              <Link href="/login" style={{fontWeight: 500, color: '#222', textDecoration: 'none'}}>Login</Link>
+              <Link href="/register" style={{
+                background: '#2563eb',
+                color: '#fff',
+                borderRadius: 24,
+                padding: '8px 20px',
+                fontWeight: 600,
+                textDecoration: 'none',
+                boxShadow: '0 1px 4px rgba(37,99,235,0.08)'
+              }}>Sign Up</Link>
+            </div>
+          </nav>
           {children}
         </ThemeProvider>
       </body>

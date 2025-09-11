@@ -1,102 +1,66 @@
+
 import Image from "next/image";
 import styles from "./page.module.css";
 
 export default function Home() {
   return (
     <div className={styles.page}>
-      <main className={styles.main} role="main" aria-label="Home content">
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol aria-label="Getting started steps">
-          <li>
-            Get started by editing <code>app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas} role="navigation" aria-label="Quick links">
-          <a
-            className={styles.primary + " focus:outline-none focus:ring-2 focus:ring-blue-500"}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Deploy to Vercel"
-          >
+      <main className={styles.main} role="main" aria-label="Home content" style={{paddingTop: 32, paddingBottom: 32}}>
+        <section style={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 48,
+          flexWrap: 'wrap',
+          width: '100%'
+        }}>
+          <div style={{maxWidth: 480, flex: 1, minWidth: 280}}>
+            <h1 style={{fontSize: 44, fontWeight: 800, marginBottom: 16, lineHeight: 1.1}}>
+              Supercharge your productivity with <span style={{color: '#2563eb'}}>TaskAura.ai</span>
+            </h1>
+            <p style={{fontSize: 20, color: '#444', marginBottom: 32, fontWeight: 500}}>
+              Your AI-powered assistant for tasks, chat, and smart summaries. Collaborate, organize, and achieve more—effortlessly.
+            </p>
+            <div style={{display: 'flex', gap: 16, marginBottom: 24}}>
+              <a
+                className={styles.primary + " focus:outline-none focus:ring-2 focus:ring-blue-500"}
+                href="/register"
+                aria-label="Sign up for TaskAura.ai"
+                style={{fontSize: 18, padding: '12px 32px', borderRadius: 32, fontWeight: 700, background: '#2563eb', color: '#fff', boxShadow: '0 2px 8px rgba(37,99,235,0.08)'}}
+              >
+                Get Started
+              </a>
+              <a
+                className={styles.secondary + " focus:outline-none focus:ring-2 focus:ring-blue-500"}
+                href="/login"
+                aria-label="Login to TaskAura.ai"
+                style={{fontSize: 18, padding: '12px 32px', borderRadius: 32, fontWeight: 700, border: '1.5px solid #2563eb', color: '#2563eb', background: '#fff'}}
+              >
+                Login
+              </a>
+            </div>
+            <ul style={{fontSize: 17, color: '#333', marginLeft: 0, paddingLeft: 0, listStyle: 'none', marginBottom: 0}}>
+              <li style={{marginBottom: 8}}>✅ Real-time task management</li>
+              <li style={{marginBottom: 8}}>💬 AI chat and smart summaries</li>
+              <li style={{marginBottom: 8}}>🤝 Workspace collaboration</li>
+              <li>📱 Accessible from any device</li>
+            </ul>
+          </div>
+          <div style={{flex: 1, minWidth: 260, display: 'flex', justifyContent: 'center'}}>
             <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              src="/globe.svg"
+              alt="Productivity illustration"
+              width={340}
+              height={340}
+              priority
+              style={{maxWidth: '100%', height: 'auto', borderRadius: 24, boxShadow: '0 4px 32px rgba(37,99,235,0.08)'}}
             />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary + " focus:outline-none focus:ring-2 focus:ring-blue-500"}
-            aria-label="Read Next.js documentation"
-          >
-            Read our docs
-          </a>
-        </div>
+          </div>
+        </section>
       </main>
-      <footer className={styles.footer} role="contentinfo" aria-label="Footer links">
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="focus:outline-none focus:ring-2 focus:ring-blue-500"
-          aria-label="Learn Next.js"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="focus:outline-none focus:ring-2 focus:ring-blue-500"
-          aria-label="Vercel Next.js templates"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="focus:outline-none focus:ring-2 focus:ring-blue-500"
-          aria-label="Go to nextjs.org"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      <footer className={styles.footer} role="contentinfo" aria-label="Footer">
+        <span>© {new Date().getFullYear()} TaskAura.ai</span>
       </footer>
     </div>
   );

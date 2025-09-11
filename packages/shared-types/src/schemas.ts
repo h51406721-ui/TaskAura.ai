@@ -4,6 +4,7 @@ export const UserSchema = z.object({
   id: z.number().int().optional(),
   name: z.string().min(1),
   email: z.string().email(),
+  password: z.string().min(6),
 });
 
 export const MessageSchema = z.object({
